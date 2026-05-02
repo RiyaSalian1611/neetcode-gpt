@@ -1,0 +1,16 @@
+import numpy as np
+from numpy.typing import NDArray
+
+
+class Solution:
+
+    def softmax(self, z: NDArray[np.float64]) -> NDArray[np.float64]:
+        # z is a 1D NumPy array of logits
+        # Hint: subtract max(z) for numerical stability before computing exp
+        # return np.round(your_answer, 4)
+        max_z = np.max(z)
+        denom = np.sum(np.exp(z-max_z))
+        softmax= []
+        for i,z_i in enumerate(z):
+            softmax.append(np.exp(z_i-max_z)/denom)
+        return np.round(softmax,4)
